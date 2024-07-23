@@ -1,45 +1,117 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+
+			apiUrl: "https://www.swapi.tech/api/",
+
+			apiUrltwo: "https://swapi.dev/api/",
+
+			People: [],
+
+			Planets: [],
+
+			Vehicles: [],
+
+			Favorites: [],
+
+			Details: [],
+
+			Description: "",
+
+			Id: "",
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			getPeople: async () =>{
 				const store = getStore();
+				const actions = getActions();
+				try {
+					const  response = await fetch(store.apiUrltwo + "people");
+					if (!response.ok){
+						console.log("getPeople error");
+					}
+					const data = await response.json();
+					setStore({People: data.result,})
+				} catch (error){
+					console.log(error);
+				}
+			},
+			getPlanets: async () =>{
+				const store = getStore();
+				const actions = getActions();
+				try {
+					const  response = await fetch(store.apiUrltwo + "planets");
+					if (!response.ok){
+						console.log("getPlanets error");
+					}
+					const data = await response.json();
+					setStore({Planets: data.result,})
+				} catch (error){
+					console.log(error);
+				}
+			},
+			getVehicles: async () =>{
+				const store = getStore();
+				const actions = getActions();
+				try {
+					const  response = await fetch(store.apiUrltwo + "vehicles");
+					if (!response.ok){
+						console.log("getVehicles error");
+					}
+					const data = await response.json();
+					setStore({Vehicles: data.result,})
+				} catch (error){
+					console.log(error);
+				}
+			},
+			addFavorite: async (favoriteToAdd) =>{
+				const store = getStore();
+				const actions = getActions();
+				const newFavorite = store.favorites.find((favorite) => favorite.name === favoriteToAdd.name)
+				if (favoriteToAdd == newFavorite){
+						actions.removeFavorite(favoriteToAdd)
+				}else {
+					const newFavorites= store.favorites.filter((favorite) => favorite.name !== favoriteToAdd.name);
+					setStore({favorites:[...newFavorites, favoriteToAdd]})
+				}
+			},
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+			removeFavorite: async (favoriteToRemove)=>{
+				const store = getStore();
+				const actions = getActions();
+				const newFavorites= store.favorites.filter((favorite) => favorite.name !== favoriteToRemove.name);
+				setStore({favorites: newFavorites})
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			},
+			getDetails: (element) => {
+				const store = getStore();
+				if (element.url.split("/")[4] === "people")
+					store.People.find((character) => character.url === element.url)
+				setStore({
+					Details: element,
+					Id: element.url.split("/")[5],
+				})
+				if (element.url.split("/")[4] === "planets")
+					store.Planets.find((planet) => planet.url === element.url)
+				setStore({
+					Details: element,
+					Id: element.url.split("/")[5],
+				})
+				if (element.url.split("/")[4] === "vehicles")
+					store.Vehicles.find((vehicle) => vehicle.url === element.url)
+				setStore({
+					Details: element,
+					Id: element.url.split("/")[5],
+				})
+			},
+			getDescription: (url) => {
+				const store = getStore();
+					setStore({
+						Description: url,
+					})
+			},
 		}
-	};
-};
+	}
+}
 
 export default getState;
