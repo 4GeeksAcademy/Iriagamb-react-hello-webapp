@@ -1,18 +1,58 @@
-import React from "react";
-import Characters from "../component/characters";
+import React, { useContext } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import CharCard from "../component/charCard.js";
+import PlanetCard from "../component/planetCard.js";
+import ShipCard from "../component/shipCard.js";
+import { Context } from "../store/appContext.js";
 import "../../styles/home.css";
 
 export const Home = () => {
-	return(
-	<div className="stars container-fliud">
-            <div className="container">
-                <div className="lista shadow-lg p-3 rounded-3">
-                    <h1 className="text-center pt-5 mt-5 yellow">Characters</h1>
-                    	<div className="d-flex overflow-auto">
-                        	<Characters />
-						</div>	
-				</div>
-			</div>
-    </div>
-					);
+  const { store } = useContext(Context);
+
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <h2 className="heading">Characters</h2>
+        </Col>
+      </Row>
+      <Row className="mb-5">
+        <div className="d-flex justify-content-between overFlow">
+          {store.people
+            ? store.people.map((elem, index) => (
+                <CharCard key={index} id={++index} character={elem} />
+              ))
+            : ""}
+        </div>
+      </Row>
+      <Row>
+        <Col>
+          <h2 className="heading">Planets</h2>
+        </Col>
+      </Row>
+      <Row Row className="mb-5">
+        <div className="d-flex justify-content-between overFlow">
+          {store.planets
+            ? store.planets.map((elem, index) => (
+                <PlanetCard key={index} id={++index} planet={elem} />
+              ))
+            : ""}
+        </div>
+      </Row>
+      <Row>
+        <Col>
+          <h2 className="heading">Start Ships</h2>
+        </Col>
+      </Row>
+      <Row Row className="mb-5">
+        <div className="d-flex justify-content-between overFlow">
+          {store.starShips
+            ? store.starShips.map((elem, index) => (
+                <ShipCard key={index} id={++index} ship={elem} />
+              ))
+            : ""}
+        </div>
+      </Row>
+    </Container>
+  );
 };

@@ -1,117 +1,116 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-
-			apiUrl: "https://www.swapi.tech/api/",
-
-			apiUrltwo: "https://swapi.dev/api/",
-
-			People: [],
-
-			Planets: [],
-
-			Vehicles: [],
-
-			Favorites: [],
-
-			Details: [],
-
-			Description: "",
-
-			Id: "",
-
+			people: [], // all characters info
+			character: [], // 1 character info
+			planets: [], // all planets info
+			planet: [], // 1 planet info
+			starShips: [], // all star ship info
+			starShip: [], // 1 star ship info
+			favorites: []
 		},
 		actions: {
-			getPeople: async () =>{
+			// Use getActions to call a function within a function
+
+			addItem: item => {
 				const store = getStore();
-				const actions = getActions();
-				try {
-					const  response = await fetch(store.apiUrltwo + "people");
-					if (!response.ok){
-						console.log("getPeople error");
-					}
-					const data = await response.json();
-					setStore({People: data.result,})
-				} catch (error){
-					console.log(error);
-				}
-			},
-			getPlanets: async () =>{
-				const store = getStore();
-				const actions = getActions();
-				try {
-					const  response = await fetch(store.apiUrltwo + "planets");
-					if (!response.ok){
-						console.log("getPlanets error");
-					}
-					const data = await response.json();
-					setStore({Planets: data.result,})
-				} catch (error){
-					console.log(error);
-				}
-			},
-			getVehicles: async () =>{
-				const store = getStore();
-				const actions = getActions();
-				try {
-					const  response = await fetch(store.apiUrltwo + "vehicles");
-					if (!response.ok){
-						console.log("getVehicles error");
-					}
-					const data = await response.json();
-					setStore({Vehicles: data.result,})
-				} catch (error){
-					console.log(error);
-				}
-			},
-			addFavorite: async (favoriteToAdd) =>{
-				const store = getStore();
-				const actions = getActions();
-				const newFavorite = store.favorites.find((favorite) => favorite.name === favoriteToAdd.name)
-				if (favoriteToAdd == newFavorite){
-						actions.removeFavorite(favoriteToAdd)
-				}else {
-					const newFavorites= store.favorites.filter((favorite) => favorite.name !== favoriteToAdd.name);
-					setStore({favorites:[...newFavorites, favoriteToAdd]})
-				}
+				setStore({ favorites: [...store.favorites, { item }] });
 			},
 
-			removeFavorite: async (favoriteToRemove)=>{
+			removeItem: id => {
+				let value = document.getElementById(id).title;
 				const store = getStore();
-				const actions = getActions();
-				const newFavorites= store.favorites.filter((favorite) => favorite.name !== favoriteToRemove.name);
-				setStore({favorites: newFavorites})
+				setStore({ favorites: store.favorites.filter(fav => fav.item !== value) });
+			},
 
+			getPeopleData: async () => {
+				const settings = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" }
+				};
+
+				const request = await fetch(`https://www.swapi.tech/api/people`, settings);
+				const json = await request.json();
+				const data = json;
+				setStore({ people: data.results });
 			},
-			getDetails: (element) => {
+
+			getCharacterDescription: async url => {
 				const store = getStore();
-				if (element.url.split("/")[4] === "people")
-					store.People.find((character) => character.url === element.url)
-				setStore({
-					Details: element,
-					Id: element.url.split("/")[5],
-				})
-				if (element.url.split("/")[4] === "planets")
-					store.Planets.find((planet) => planet.url === element.url)
-				setStore({
-					Details: element,
-					Id: element.url.split("/")[5],
-				})
-				if (element.url.split("/")[4] === "vehicles")
-					store.Vehicles.find((vehicle) => vehicle.url === element.url)
-				setStore({
-					Details: element,
-					Id: element.url.split("/")[5],
-				})
+				const settings = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" }
+				};
+
+				const request = await fetch(url, settings);
+				const json = await request.json();
+				const data = json;
+				setStore({ character: [...store.character, data.result.properties] });
 			},
-			getDescription: (url) => {
+
+			charDescription: url => {
+				getActions().getCharacterDescription(url);
+			},
+
+			getPlanetsData: async () => {
+				const settings = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" }
+				};
+
+				const request = await fetch(`https://www.swapi.tech/api/planets`, settings);
+				const json = await request.json();
+				const data = json;
+				setStore({ planets: data.results });
+			},
+
+			getPlanetDescription: async url => {
 				const store = getStore();
-					setStore({
-						Description: url,
-					})
+				const settings = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" }
+				};
+
+				const request = await fetch(url, settings);
+				const json = await request.json();
+				const data = json;
+				setStore({ planet: [...store.planet, data.result.properties] });
 			},
+
+			planetDescription: url => {
+				getActions().getPlanetDescription(url);
+			},
+
+			getStarShipsData: async () => {
+				const settings = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" }
+				};
+
+				const request = await fetch(`https://www.swapi.tech/api/starships`, settings);
+				const json = await request.json();
+				const data = json;
+				setStore({ starShips: data.results });
+			},
+
+			getStarShipDescription: async url => {
+				const store = getStore();
+				const settings = {
+					method: "GET",
+					headers: { "Content-Type": "application/json" }
+				};
+
+				const request = await fetch(url, settings);
+				const json = await request.json();
+				const data = json;
+				setStore({ starShip: [...store.starShip, data.result.properties] });
+			},
+
+			starShipDescription: url => {
+				getActions().getStarShipDescription(url);
+			}
 		}
-	}
-}
+	};
+};
 
 export default getState;
