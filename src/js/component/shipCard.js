@@ -12,11 +12,11 @@ const ShipCard = props => {
 
 	return (
 		<div class="col-sm">
-			<Card className="m-2">
+			<Card className="m-2 bg-dark bg-opacity-25 text-white bg-opacity-75">
 				<Card.Img
 					className="p-3"
 					variant="top"
-					src="https://www.pngarts.com/files/3/Millennium-Falcon-Star-Wars-Download-Transparent-PNG-Image.png"
+					src="https://starwars-visualguide.com/assets/img/vehicles/8.jpg"
 				/>
 				<Card.Body>
 					<Card.Title>{props.ship.name}</Card.Title>

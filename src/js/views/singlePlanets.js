@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { Container, Jumbotron, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/single.css";
+import "../../styles/index.css";
 
 export const SinglePlanet = () => {
   const { store, actions } = useContext(Context);
@@ -20,7 +20,7 @@ export const SinglePlanet = () => {
             src="https://www.publicdomainpictures.net/pictures/420000/velka/planet-kugel-ball-clipart.png"
             width="400"
           />
-          <div className="text">
+          <div className="text text-white bg-opacity-75">
             {planetStore[0] ? (
               <h1 className="display-4">{planetStore[0].name}</h1>
             ) : (

@@ -1,6 +1,21 @@
-/*
-    General Styles
-*/
+.heading {
+    color: rgb(28, 146, 120);
+}
+
+.card {
+    width: 20rem;
+}
+
+.likeBtn {
+    float: right;
+}
+
+.overFlow {
+    overflow: auto;
+}
+.h-100 {
+    background: url(https://www.script-tutorials.com/demos/360/images/stars.png) top center #000;
+}
 .drp {
     display: inline;
 }
@@ -10,11 +25,27 @@
 }
 
 .counter {
-    background-color: rgb(28, 146, 120);
+    background-color: rgb(85, 90, 89);
     padding-left: 4px;
     padding-right: 4px;
     border-radius: 3px;
 }
 .navbar {
-    background-color: rgb(10, 58, 48);
+    background-color: rgb(63, 83, 79);
+    
 }
+.logo {
+    justify-content: center;
+}
+
+  .text {
+    margin-left: 10px;
+  }
+  
+  .hr {
+    border-color: rgb(248, 245, 245);
+  }
+  
+  .info {
+    color: rgb(247, 243, 243);
+  }

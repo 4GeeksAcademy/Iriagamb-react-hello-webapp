@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { Container, Jumbotron, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/single.css";
+
 
 export const SingleStarship = () => {
 	const { store, actions } = useContext(Context);
@@ -20,7 +20,7 @@ export const SingleStarship = () => {
 						src="https://www.pngarts.com/files/3/Millennium-Falcon-Star-Wars-Download-Transparent-PNG-Image.png"
 						width="400"
 					/>
-					<div className="text">
+					<div className="text text-white bg-opacity-75">
 						{shipStore[0] ? <h1 className="display-4">{shipStore[0].name}</h1> : ""}
 						<p>
 							Here we should have a description of each StarWars element, but this api doesn&apos;t

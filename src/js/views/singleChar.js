@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/single.css";
+
 
 export const SingleChar = () => {
   const { store, actions } = useContext(Context);
@@ -20,9 +20,9 @@ export const SingleChar = () => {
             src="https://cdn.idealo.com/folder/Product/201592/5/201592562/s11_produktbild_max/mattel-disney-star-wars-mandalorian-the-child-baby-yoda.jpg"
             width="300"
           />
-          <div className="text">
+          <div className="text text-white bg-opacity-75">
             {charStore[0] ? (
-              <h1 className="display-4">{charStore[0].name}</h1>
+              <h1 className="display-4 text-white bg-opacity-75">{charStore[0].name}</h1>
             ) : (
               ""
             )}

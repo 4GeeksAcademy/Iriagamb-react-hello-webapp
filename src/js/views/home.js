@@ -4,7 +4,7 @@ import CharCard from "../component/charCard.js";
 import PlanetCard from "../component/planetCard.js";
 import ShipCard from "../component/shipCard.js";
 import { Context } from "../store/appContext.js";
-import "../../styles/home.css";
+
 
 export const Home = () => {
   const { store } = useContext(Context);

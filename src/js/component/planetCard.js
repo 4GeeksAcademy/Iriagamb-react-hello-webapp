@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
+
 const PlanetCard = (props) => {
   const { store, actions } = useContext(Context);
   const planetStore = store.planet.filter(
@@ -13,10 +14,10 @@ const PlanetCard = (props) => {
 
   return (
     <div class="col-sm">
-      <Card className="m-2">
+      <Card className="m-2 bg-dark bg-opacity-25 text-white bg-opacity-75">
         <Card.Img
           className="p-3"          variant="top"
-          src="https://www.publicdomainpictures.net/pictures/420000/velka/planet-kugel-ball-clipart.png"
+          src="https://starwars-visualguide.com/assets/img/planets/3.jpg"
         />
         <Card.Body>
           <Card.Title>{props.planet.name}</Card.Title>

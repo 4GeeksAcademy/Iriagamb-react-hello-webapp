@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import {  Card, Button } from "react-bootstrap";
-import "../../styles/single.css";
+import "../../styles/index.css";
 
 const CharCard = props => {
 	const { store, actions } = useContext(Context);
@@ -12,12 +12,12 @@ const CharCard = props => {
 	useEffect(() => actions.charDescription(props.character.url), []);
 
 	return (
-		<div className = "characterCard">
-			<div class="col-sm ">
-				<Card className="m-2 ">
-					<Card.Img className="p-5"
+		<div className = "characterCard bg-transparent">
+			<div class="col-sm  ">
+				<Card className="m-2 bg-dark bg-opacity-25 text-white bg-opacity-75 ">
+					<Card.Img className="p-5 "
 						variant="top"
-						src="https://cdn.idealo.com/folder/Product/201592/5/201592562/s11_produktbild_max/mattel-disney-star-wars-mandalorian-the-child-baby-yoda.jpg"
+						src="https://starwars-visualguide.com/assets/img/characters/44.jpg"
 						width="200"
 					/>
 					<Card.Body>

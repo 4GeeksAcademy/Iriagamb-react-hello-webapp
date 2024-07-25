@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import { Context } from "../store/appContext";
-import "../../styles/single.css";
+
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
@@ -11,18 +11,18 @@ export const Navbar = () => {
     <Container fluid>
       <Row>
         <Col>
-          <nav className="navbar navbar-light bg-light mb-3">
+          <nav className="navbar navbar-light bg-transparent mb-3 ">
             <Link to="/">
-              <span className="navbar-brand m-2 h1">
+              <span className="logo m-2 h1 ">
                 <img
-                  src="https://cdn.worldvectorlogo.com/logos/star-wars-4.svg"
+                  src="https://cdn.worldvectorlogo.com/logos/star-wars-2.svg"
                   width="90"
                 />
               </span>
             </Link>
-            <div className="ml-auto">
+            <div className="ml-auto bg-opacity-10">
               <Dropdown>
-                <Dropdown.Toggle variant="success" className="toggle">
+                <Dropdown.Toggle variant="success" className="toggle btn-dark">
                   <div className="drp">
                     Favorites{" "}
                     <div className="drp counter">{store.favorites.length}</div>
