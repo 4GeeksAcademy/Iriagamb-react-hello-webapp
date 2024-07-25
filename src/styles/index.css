@@ -1,3 +1,20 @@
-/* 
+/*
     General Styles
 */
+.drp {
+    display: inline;
+}
+
+.toggle {
+    width: max-content;
+}
+
+.counter {
+    background-color: rgb(28, 146, 120);
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 3px;
+}
+.navbar {
+    background-color: rgb(10, 58, 48);
+}

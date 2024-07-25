@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Dropdown } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import "../../styles/single.css";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);

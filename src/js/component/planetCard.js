@@ -1,4 +1,4 @@
-
+import { Card, Button } from "react-bootstrap";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -12,7 +12,7 @@ const PlanetCard = (props) => {
   useEffect(() => actions.planetDescription(props.planet.url), []);
 
   return (
-    <Col>
+    <div class="col-sm">
       <Card className="m-2">
         <Card.Img
           className="p-3"          variant="top"
@@ -40,7 +40,7 @@ const PlanetCard = (props) => {
           </Button>
         </Card.Body>
       </Card>
-    </Col>
+      </div>
   );
 };
 

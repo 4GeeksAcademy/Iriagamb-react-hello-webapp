@@ -1,16 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			people: [], // all characters info
-			character: [], // 1 character info
-			planets: [], // all planets info
-			planet: [], // 1 planet info
-			starShips: [], // all star ship info
-			starShip: [], // 1 star ship info
+			people: [], 
+			character: [],
+			planets: [], 
+			planet: [], 
+			starShips: [], 
+			starShip: [], 
 			favorites: []
 		},
 		actions: {
-			// Use getActions to call a function within a function
+			
 
 			addItem: item => {
 				const store = getStore();

@@ -35,9 +35,6 @@ const Layout = () => {
             <Route exact path="/single_starship/:uid">
               <SingleStarship />
             </Route>
-            <Route>
-              <h1>Not found!</h1>
-            </Route>
          
           <Footer />
         </ScrollToTop>
